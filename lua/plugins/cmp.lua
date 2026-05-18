@@ -20,12 +20,18 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
+        -- Atalhos do menu de autocompletar (modo insert)
         mapping = cmp.mapping.preset.insert({
+          -- <C-b> / <C-f> — rola documentação do item (cima / baixo)
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          -- <C-Space> — abre o menu de completar manualmente
           ["<C-Space>"] = cmp.mapping.complete(),
+          -- <C-e> — fecha o menu sem confirmar
           ["<C-e>"] = cmp.mapping.abort(),
+          -- <CR> — confirma a sugestão selecionada
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          -- <Tab> — próximo item; ou expande/avança snippet LuaSnip
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -35,6 +41,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
+          -- <S-Tab> — item anterior; ou volta no snippet LuaSnip
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
