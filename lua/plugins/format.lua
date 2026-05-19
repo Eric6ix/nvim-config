@@ -1,4 +1,5 @@
--- Formatting and linting using null-ls with convenient keymaps
+-- Formatação via none-ls (prettier, black)
+-- Diagnósticos ESLint: ver lspconfig.lua (eslint LSP)
 return {
   {
     "nvimtools/none-ls.nvim",
@@ -9,11 +10,12 @@ return {
         sources = {
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.black,
-          null_ls.builtins.diagnostics.eslint,
         },
       })
       -- <leader>f (modo normal) — formata o arquivo inteiro
-      vim.api.nvim_set_keymap('n', '<leader>f', ':lua vim.lsp.buf.formatting_sync()<CR>', { noremap = true, silent = true })
+      vim.keymap.set("n", "<leader>f", function()
+        vim.lsp.buf.format({ async = false })
+      end, { desc = "Formatar buffer" })
     end,
   },
 }
