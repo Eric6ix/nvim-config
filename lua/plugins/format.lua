@@ -13,7 +13,7 @@ return {
         },
       })
       -- <leader>f (modo normal) — formata o arquivo inteiro
-      vim.keymap.set("n", "<leader>f", function()
+      vim.keymap.set("n", "J", function()
         vim.lsp.buf.format({ async = false })
       end, { desc = "Formatar buffer" })
     end,
