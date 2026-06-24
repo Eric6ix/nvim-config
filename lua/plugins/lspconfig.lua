@@ -1,4 +1,4 @@
--- LSP: JS/TS, HTML, CSS, Python, Prisma, Docker, ESLint
+-- LSP: JS/TS, HTML, CSS, Python, Prisma, Docker, ESLint, Tailwind
 return {
   {
     "neovim/nvim-lspconfig",
@@ -9,6 +9,7 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local servers = {
+        hyprls = {},
         ts_ls = {},
         html = {},
         cssls = {},
@@ -17,6 +18,16 @@ return {
         dockerls = {},
         docker_compose_language_service = {},
         eslint = {},
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              includeLanguages = {
+                typescript = "javascript",
+                typescriptreact = "javascript",
+              },
+            },
+          },
+        },
         jdtls = {},
         lua_ls = {
           settings = {
