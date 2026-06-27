@@ -6,6 +6,15 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.g.use_nerdfont = true
 
+-- Neovim aberto pela interface gráfica nem sempre herda ~/.local/bin do shell
+local local_bin = vim.fn.expand("~/.local/bin")
+if vim.fn.isdirectory(local_bin) == 1 then
+  local path = vim.env.PATH or ""
+  if not path:find(local_bin, 1, true) then
+    vim.env.PATH = local_bin .. ":" .. path
+  end
+end
+
 vim.diagnostic.config({
   signs = {
     text = {
